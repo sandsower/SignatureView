@@ -453,19 +453,8 @@
     CGDataProviderRelease(provider);
     
     //extra step - masking white to transparent
-    CGImageRef rawImageRef = myImage.CGImage;
-    const float colorMasking[6] = {255, 255, 255, 255, 255, 255};
-    UIGraphicsBeginImageContext(myImage.size);
-    CGImageRef maskedImageRef = CGImageCreateWithMaskingColors(rawImageRef, colorMasking);
-    CGContextTranslateCTM(UIGraphicsGetCurrentContext(), 0.0, myImage.size.height);
-    CGContextScaleCTM(UIGraphicsGetCurrentContext(), 1.0, -1.0);
     
-    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, myImage.size.width, myImage.size.height), maskedImageRef);
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    CGImageRelease(maskedImageRef);
-    UIGraphicsEndImageContext();
-    
-    return newImage;
+    return myImage;
 }
 
 @end
